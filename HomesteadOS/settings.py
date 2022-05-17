@@ -77,8 +77,6 @@ WSGI_APPLICATION = 'HomesteadOS.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 def get_os_vars(key):
-    print(key)
-    print(os.getenv(key))
     return os.getenv(key)
 
 DATABASES = {
