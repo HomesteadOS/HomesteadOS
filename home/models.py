@@ -18,7 +18,7 @@ class Staff(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField()
-    primary_location = models.ForeignKey(Location)
+    primary_location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
 
 class Role(models.Model):
@@ -45,11 +45,10 @@ class Crop(models.Model):
     harvest_date = models.DateTimeField()
     harvest_target_date = models.DateTimeField()
     yield_goal = models.IntegerField()
-    yield_unit = models.ForeignKey(YieldUnits)
+    yield_unit = models.ForeignKey(YieldUnits, on_delete=models.CASCADE)
     yield_actual = models.IntegerField()
 
 
 class Field(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
-    crop = models.ForeignKey(Crop)
-
+    crop = models.ForeignKey(Crop, on_delete=models.CASCADE)
