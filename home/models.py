@@ -53,3 +53,31 @@ class Field(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     crop = models.ForeignKey(Crop, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
+
+
+class Supplier(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField()
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+
+
+class ExpenseClassification(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    description = models.TextField()
+
+
+class Expense(models.Model):
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    spender = models.ForeignKey(Staff, on_delete=models.DO_NOTHING, related_name='spender')
+    debtor = models.ForeignKey(Staff, on_delete=models.DO_NOTHING, related_name='debtor')
+    datetime = models.DateTimeField()
+    description = models.TextField()
+    percent = models.IntegerField()
+    classification = models.ForeignKey(ExpenseClassification, on_delete=models.DO_NOTHING)
+    classification_detail = models.TextField()
+    paid_external = models.BooleanField()
+    paid_internal = models.BooleanField()
+    approved = models.BooleanField(default=True)
+    store = models.CharField(max_length=255)
+    supplier = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING)
+
