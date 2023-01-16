@@ -1,6 +1,8 @@
 services:
   db:
-    image: "postgres:latest"
+    build:
+      context: ./
+      dockerfile: PostGIS.Dockerfile
     ports:
       - "5432:5432"
     volumes:
