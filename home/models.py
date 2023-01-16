@@ -81,3 +81,26 @@ class Expense(models.Model):
     store = models.CharField(max_length=255)
     supplier = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING)
 
+
+class Project(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    description = models.TextField()
+    homestead = models.ForeignKey(HomeStead, on_delete=models.CASCADE)
+    start_date = models.DateField()
+    due_date = models.DateField()
+    staff_responsible = models.ForeignKey(Staff)
+
+
+class CapitalInvestment(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    description = models.TextField()
+
+
+class Budget(models.Model):
+    property_cost = models.DecimalField(max_digits=10, decimal_places=2)
+    property_cost_monthly = models.DecimalField(max_digits=10, decimal_places=2)
+    salary = models.DecimalField(max_digits=10, decimal_places=2)
+    capital_investment = models.ManyToManyField(CapitalInvestment, related_name='investments')
+    period_start = models.DateTimeField()
+    period_end = models.DateTimeField()
+    
