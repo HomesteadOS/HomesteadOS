@@ -88,7 +88,7 @@ class Project(models.Model):
     homestead = models.ForeignKey(HomeStead, on_delete=models.CASCADE)
     start_date = models.DateField()
     due_date = models.DateField()
-    staff_responsible = models.ForeignKey(Staff)
+    staff_responsible = models.ForeignKey(Staff, on_delete=models.CASCADE)
 
 
 class CapitalInvestment(models.Model):
@@ -103,4 +103,4 @@ class Budget(models.Model):
     capital_investment = models.ManyToManyField(CapitalInvestment, related_name='investments')
     period_start = models.DateTimeField()
     period_end = models.DateTimeField()
-    
+
