@@ -6,12 +6,18 @@ class HomeStead(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
 
+    def __str__(self):
+        return self.name
+
 
 class Location(models.Model):
     homestead = models.ForeignKey(HomeStead, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
     primary_location = models.BooleanField()
+
+    def __str__(self):
+        return self.name
 
 
 class Staff(models.Model):
@@ -20,11 +26,17 @@ class Staff(models.Model):
     email = models.EmailField(unique=True)
     primary_location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
 
 class Role(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
     email = models.EmailField()
+
+    def __str__(self):
+        return self.name
 
 
 class RoleClasses(models.Model):
@@ -32,10 +44,16 @@ class RoleClasses(models.Model):
     description = models.TextField()
     enabled = models.BooleanField()
 
+    def __str__(self):
+        return self.name
+
 
 class YieldUnits(models.Model):
     name = models.CharField(max_length=100, unique=True)
     abbreviation = models.CharField(max_length=3)
+
+    def __str__(self):
+        return self.name
 
 
 class Crop(models.Model):
@@ -48,11 +66,17 @@ class Crop(models.Model):
     yield_unit = models.ForeignKey(YieldUnits, on_delete=models.CASCADE)
     yield_actual = models.IntegerField()
 
+    def __str__(self):
+        return self.name
+
 
 class Field(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     crop = models.ForeignKey(Crop, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Supplier(models.Model):
@@ -60,14 +84,21 @@ class Supplier(models.Model):
     description = models.TextField()
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 
 class ExpenseClassification(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField()
 
+    def __str__(self):
+        return self.name
+
 
 class Expense(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+    debt = models.DecimalField(max_digits=10, decimal_places=2)
     spender = models.ForeignKey(Staff, on_delete=models.DO_NOTHING, related_name='spender')
     debtor = models.ForeignKey(Staff, on_delete=models.DO_NOTHING, related_name='debtor')
     datetime = models.DateTimeField()
@@ -81,6 +112,10 @@ class Expense(models.Model):
     store = models.CharField(max_length=255)
     supplier = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING)
 
+    def __str__(self):
+        return self.spender.last_name + ', ' + self.spender.first_name + ' spent on ' + self.datetime.__str__() + ' ' \
+            + self.debtor.last_name + ', ' + self.debtor.first_name + ' owes ' + self.debt
+
 
 class Project(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -90,10 +125,16 @@ class Project(models.Model):
     due_date = models.DateField()
     staff_responsible = models.ForeignKey(Staff, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 
 class CapitalInvestment(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     description = models.TextField()
+
+    def __str__(self):
+        return self.project.name
 
 
 class Budget(models.Model):
@@ -103,4 +144,7 @@ class Budget(models.Model):
     capital_investment = models.ManyToManyField(CapitalInvestment, related_name='investments')
     period_start = models.DateTimeField()
     period_end = models.DateTimeField()
+
+    def __str__(self):
+        return self.period_start.__str__() + '-' + self.period_end.__str__()
 

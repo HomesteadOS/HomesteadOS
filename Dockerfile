@@ -15,7 +15,7 @@ RUN apt-get update -qq && apt-get install -y -qq \
     ca-certificates \
     wget build-essential\
     # python basic libs
-    python3.8 python3.8-dev gettext \
+    python3.8-dev gettext \
     # geodjango
     gdal-bin binutils libproj-dev libgdal-dev \
     # postgresql
