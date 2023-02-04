@@ -30,19 +30,20 @@ class Staff(models.Model):
         return self.first_name + ' ' + self.last_name
 
 
-class Role(models.Model):
+class RoleClasses(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
-    email = models.EmailField()
+    enabled = models.BooleanField()
 
     def __str__(self):
         return self.name
 
 
-class RoleClasses(models.Model):
+class Role(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
-    enabled = models.BooleanField()
+    email = models.EmailField()
+    role_class = models.ForeignKey(RoleClasses, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.name
