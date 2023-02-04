@@ -2,7 +2,7 @@ from django.contrib.gis.db import models
 
 
 # Create your models here.
-class HomeStead(models.Model):
+class Homestead(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
 
@@ -11,7 +11,7 @@ class HomeStead(models.Model):
 
 
 class Location(models.Model):
-    homestead = models.ForeignKey(HomeStead, on_delete=models.CASCADE, related_name="locations")
+    homestead = models.ForeignKey(Homestead, on_delete=models.CASCADE, related_name="locations")
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
     primary_location = models.BooleanField()
@@ -120,7 +120,7 @@ class Expense(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=50, unique=True)
     description = models.TextField()
-    homestead = models.ForeignKey(HomeStead, on_delete=models.CASCADE)
+    homestead = models.ForeignKey(Homestead, on_delete=models.CASCADE)
     start_date = models.DateField()
     due_date = models.DateField()
     staff_responsible = models.ForeignKey(Staff, on_delete=models.CASCADE)

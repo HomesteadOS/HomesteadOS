@@ -1,12 +1,12 @@
 import graphene
 from graphene_django import DjangoObjectType
 
-from home.models import HomeStead, Location
+from home.models import Homestead, Location
 
 
 class HomesteadType(DjangoObjectType):
     class Meta:
-        model = HomeStead
+        model = Homestead
         fields = ("name", "description", "locations")
 
 
@@ -22,7 +22,7 @@ class Query(graphene.ObjectType):
     all_locations_by_name = graphene.Field(LocationType, name=graphene.String(required=True))
 
     def resolve_all_homesteads(root, info):
-        return Homestead.objects.select_related("location").all()
+        return Homestead.objects.all()
 
     def resolve_locations_by_name(root, info, name):
         try:
