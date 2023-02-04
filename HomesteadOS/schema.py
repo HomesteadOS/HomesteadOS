@@ -1,6 +1,8 @@
 import graphene
 from graphene_django import DjangoObjectType
 
+from home.GraphQL.staff_mutations import UpdateStaffMutation, CreateStaffMutation
+from home.GraphQL.staff_type import StaffType
 from home.models import Homestead, Location, Staff, Budget, CapitalInvestment, Project, Expense, ExpenseClassification,\
     Supplier, Field, Crop, YieldUnits, RoleClasses, Role
 
@@ -15,12 +17,6 @@ class LocationType(DjangoObjectType):
     class Meta:
         model = Location
         fields = ("homestead", "name", "description", "primary_location")
-
-
-class StaffType(DjangoObjectType):
-    class Meta:
-        model = Staff
-        fields = ("first_name", "last_name", "email", "primary_location")
 
 
 class BudgetType(DjangoObjectType):
@@ -162,5 +158,10 @@ class Query(graphene.ObjectType):
             return None
 
 
-schema = graphene.Schema(query=Query)
+class Mutation(graphene.ObjectType):
+    update_staff = UpdateStaffMutation.Field()
+    create_staff = CreateStaffMutation.Field()
+
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
 
