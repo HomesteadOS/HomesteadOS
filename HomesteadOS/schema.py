@@ -11,6 +11,7 @@ from home.GraphQL.types.location_type import LocationType
 from home.GraphQL.types.project_type import ProjectType
 from home.GraphQL.types.role_classes_type import RoleClassesType
 from home.GraphQL.mutations.staff_mutations import UpdateStaffMutation, CreateStaffMutation
+from home.GraphQL.mutations.crop_mutations import UpdateCropMutation, CreateCropMutation
 from home.GraphQL.types.staff_type import StaffType
 from home.GraphQL.types.supplier_type import SupplierType
 from home.GraphQL.types.role_type import RoleType
@@ -93,6 +94,8 @@ class Query(graphene.ObjectType):
 class Mutation(graphene.ObjectType):
     update_staff = UpdateStaffMutation.Field()
     create_staff = CreateStaffMutation.Field()
+    update_crop = UpdateCropMutation.Field()
+    create_crop = CreateCropMutation.Field()
 
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
