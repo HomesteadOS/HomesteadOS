@@ -1,91 +1,24 @@
 import graphene
 from graphene_django import DjangoObjectType
 
+from home.GraphQL.budget_type import BudgetType
+from home.GraphQL.captial_investment_type import CapitalInvestmentType
+from home.GraphQL.crop_type import CropType
+from home.GraphQL.expense_classification_type import ExpenseClassificationType
+from home.GraphQL.expense_type import ExpenseType
+from home.GraphQL.field_type import FieldType
+from home.GraphQL.homestead_type import HomesteadType
+from home.GraphQL.location_type import LocationType
+from home.GraphQL.project_type import ProjectType
+from home.GraphQL.role_classes_type import RoleClassesType
 from home.GraphQL.staff_mutations import UpdateStaffMutation, CreateStaffMutation
 from home.GraphQL.staff_type import StaffType
+from home.GraphQL.supplier_type import SupplierType
+from home.GraphQL.role_type import RoleType
+from home.GraphQL.yield_units_type import YieldUnitsType
 from home.models import Homestead, Location, Staff, Budget, CapitalInvestment, Project, Expense, ExpenseClassification,\
     Supplier, Field, Crop, YieldUnits, RoleClasses, Role
 
-
-class HomesteadType(DjangoObjectType):
-    class Meta:
-        model = Homestead
-        fields = ("name", "description", "locations")
-
-
-class LocationType(DjangoObjectType):
-    class Meta:
-        model = Location
-        fields = ("homestead", "name", "description", "primary_location")
-
-
-class BudgetType(DjangoObjectType):
-    class Meta:
-        model = Budget
-        fields = ("property_cost", "property_cost_monthly", "salary", "capital_investment", "period_start",\
-                  "period_end")
-
-
-class CapitalInvestmentType(DjangoObjectType):
-    class Meta:
-        model = CapitalInvestment
-        fields = ("project", "description")
-
-
-class ProjectType(DjangoObjectType):
-    class Meta:
-        model = Project
-        fields = ("name", "description", "homestead", "start_date", "due_date", "staff_responsible")
-
-
-class ExpenseType(DjangoObjectType):
-    class Meta:
-        model = Expense
-        fields = ("amount", "debt", "spender", "debtor", "datetime", "description", "percent", "classification",\
-                  "classification_detail", "paid_external", "paid_internal", "approved", "store", "supplier")
-
-
-class ExpenseClassificationType(DjangoObjectType):
-    class Meta:
-        model = ExpenseClassification
-        fields = ("name", "description")
-
-
-class SupplierType(DjangoObjectType):
-    class Meta:
-        model = Supplier
-        fields = ("name", "description", "location")
-
-
-class FieldType(DjangoObjectType):
-    class Meta:
-        model = Field
-        fields = ("location", "crop", "name")
-
-
-class CropType(DjangoObjectType):
-    class Meta:
-        model = Crop
-        fields = ("name", "description", "plant_date", "harvest_date", "harvest_target_date", "yield_goal", \
-                  "yield_unit", "yield_actual")
-
-
-class YieldUnitsType(DjangoObjectType):
-    class Meta:
-        model = YieldUnits
-        fields = ("name", "abbreviation")
-
-
-class RoleClassesType(DjangoObjectType):
-    class Meta:
-        model = RoleClasses
-        fields = ("name", "description", "enabled")
-
-
-class RoleType(DjangoObjectType):
-    class Meta:
-        model = Role
-        fields = ("name", "description", "email", "role_class")
 
 class Query(graphene.ObjectType):
     hello = graphene.String(default_value="Hi!")
