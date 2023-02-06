@@ -1,23 +1,22 @@
 import graphene
-from graphene_django import DjangoObjectType
 
-from home.GraphQL.budget_type import BudgetType
-from home.GraphQL.captial_investment_type import CapitalInvestmentType
-from home.GraphQL.crop_type import CropType
-from home.GraphQL.expense_classification_type import ExpenseClassificationType
-from home.GraphQL.expense_type import ExpenseType
-from home.GraphQL.field_type import FieldType
-from home.GraphQL.homestead_type import HomesteadType
-from home.GraphQL.location_type import LocationType
-from home.GraphQL.project_type import ProjectType
-from home.GraphQL.role_classes_type import RoleClassesType
-from home.GraphQL.staff_mutations import UpdateStaffMutation, CreateStaffMutation
-from home.GraphQL.staff_type import StaffType
-from home.GraphQL.supplier_type import SupplierType
-from home.GraphQL.role_type import RoleType
-from home.GraphQL.yield_units_type import YieldUnitsType
+from home.GraphQL.types.budget_type import BudgetType
+from home.GraphQL.types.captial_investment_type import CapitalInvestmentType
+from home.GraphQL.types.crop_type import CropType
+from home.GraphQL.types.expense_classification_type import ExpenseClassificationType
+from home.GraphQL.types.expense_type import ExpenseType
+from home.GraphQL.types.field_type import FieldType
+from home.GraphQL.types.homestead_type import HomesteadType
+from home.GraphQL.types.location_type import LocationType
+from home.GraphQL.types.project_type import ProjectType
+from home.GraphQL.types.role_classes_type import RoleClassesType
+from home.GraphQL.mutations.staff_mutations import UpdateStaffMutation, CreateStaffMutation
+from home.GraphQL.types.staff_type import StaffType
+from home.GraphQL.types.supplier_type import SupplierType
+from home.GraphQL.types.role_type import RoleType
+from home.GraphQL.types.yield_units_type import YieldUnitsType
 from home.models import Homestead, Location, Staff, Budget, CapitalInvestment, Project, Expense, ExpenseClassification,\
-    Supplier, Field, Crop, YieldUnits, RoleClasses, Role
+    Supplier, Field, Crop, YieldUnits, RoleClasses
 
 
 class Query(graphene.ObjectType):

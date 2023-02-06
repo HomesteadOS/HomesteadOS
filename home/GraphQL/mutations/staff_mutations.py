@@ -1,5 +1,5 @@
 import graphene
-from home.GraphQL.staff_type import StaffType
+from home.GraphQL.types.staff_type import StaffType
 from home.models import Staff, Location
 
 
