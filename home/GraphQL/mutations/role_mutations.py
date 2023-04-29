@@ -1,6 +1,8 @@
 import graphene
+
+from home.GraphQL.mutations.location_mutations import UpdateLocationMutation
 from home.GraphQL.types.role_type import RoleType
-from home.models import Role, RoleClasses
+from home.models import Role, RoleClasses, Location, Homestead
 
 
 class UpdateRoleMutation(graphene.Mutation):
