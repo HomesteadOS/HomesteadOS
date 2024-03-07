@@ -149,3 +149,14 @@ class Budget(models.Model):
     def __str__(self):
         return self.period_start.__str__() + '-' + self.period_end.__str__()
 
+
+class Event(models.Model):
+    start_date = models.DateField()
+    end_date = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    location = models.ForeignKey(Location, on_delete=models.DO_NOTHING)
+    homestead = models.ForeignKey(Homestead, on_delete=models.DO_NOTHING)
+
+
+
