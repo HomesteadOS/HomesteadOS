@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.12-alpine
 ENV PYTHONUNBUFFERED 1
 
 COPY init-user-db.sql /docker-entrypoint-initdb.d/init-user-db.sql
@@ -15,7 +15,7 @@ RUN apt-get update -qq && apt-get install -y -qq \
     ca-certificates \
     wget build-essential\
     # python basic libs
-    python3.9-dev gettext \
+    python3.12-dev gettext \
     # geodjango
     gdal-bin binutils libproj-dev libgdal-dev \
     # postgresql
