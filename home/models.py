@@ -23,8 +23,9 @@ class Location(models.Model):
 class Staff(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
-    primary_location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    email = models.EmailField()
+    primary_location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
+
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
@@ -64,7 +65,7 @@ class Crop(models.Model):
     harvest_date = models.DateTimeField()
     harvest_target_date = models.DateTimeField()
     yield_goal = models.IntegerField()
-    yield_unit = models.ForeignKey(YieldUnits, on_delete=models.CASCADE)
+    yield_unit = models.ForeignKey(YieldUnits, on_delete=models.PROTECT)
     yield_actual = models.IntegerField()
 
     def __str__(self):
@@ -73,8 +74,7 @@ class Crop(models.Model):
 
 class Field(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
-    crop = models.ForeignKey(Crop, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, unique=True)
+    crop = models.ForeignKey(Crop, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name
@@ -160,6 +160,5 @@ class Event(models.Model):
 
     def __str__(self):
         return self.start_date.__str__() + ' ' + self.start_time.__str__() + ' ' + self.location.name + ' @ ' + self.homestead.name
-
 
 
