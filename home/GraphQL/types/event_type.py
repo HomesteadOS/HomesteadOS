@@ -1,5 +1,5 @@
 from graphene_django import DjangoObjectType
-from home.models import Event
+from home.models.event import Event
 
 
 class BudgetType(DjangoObjectType):

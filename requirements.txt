@@ -1,6 +1,7 @@
-Django==4.1.6
-psycopg2==2.9.5
-graphene-django==3.0.0
+Django==5.0.3
+psycopg2==2.9.9
+graphene-django==3.2.0
 
-graphene~=3.2.2
-python-dotenv~=1.0.0
+graphene==3.3
+python-dotenv==1.0.1
+pytest==8.1.1

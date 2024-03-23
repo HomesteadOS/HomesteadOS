@@ -1,5 +1,5 @@
 from graphene_django import DjangoObjectType
-from home.models import Homestead
+from home.models.homestead import Homestead
 
 
 class HomesteadType(DjangoObjectType):

@@ -1,6 +1,6 @@
 import graphene
 from home.GraphQL.types.homestead_type import HomesteadType
-from home.models import Homestead
+from home.models.homestead import Homestead
 
 
 class UpdateHomesteadMutation(graphene.Mutation):

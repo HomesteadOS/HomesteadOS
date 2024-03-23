@@ -16,8 +16,9 @@ from home.GraphQL.types.staff_type import StaffType
 from home.GraphQL.types.supplier_type import SupplierType
 from home.GraphQL.types.role_type import RoleType
 from home.GraphQL.types.yield_units_type import YieldUnitsType
-from home.models import Homestead, Location, Staff, Budget, CapitalInvestment, Project, Expense, ExpenseClassification,\
+from home.models import Location, Staff, Budget, CapitalInvestment, Project, Expense, ExpenseClassification,\
     Supplier, Field, Crop, YieldUnits, RoleClasses
+from home.models.homestead import Homestead
 
 
 class Query(graphene.ObjectType):

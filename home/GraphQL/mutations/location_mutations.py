@@ -1,6 +1,7 @@
 import graphene
 from home.GraphQL.types.location_type import LocationType
-from home.models import Location, Homestead
+from home.models import Location
+from home.models.homestead import Homestead
 
 
 class UpdateLocationMutation(graphene.Mutation):

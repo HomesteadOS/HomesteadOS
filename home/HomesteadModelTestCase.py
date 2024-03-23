@@ -2,9 +2,10 @@ from datetime import datetime, timedelta
 
 from django.test import TestCase
 
-from home.models import Homestead, Location, Staff, RoleClasses, \
+from home.models import Location, Staff, RoleClasses, \
     Role, YieldUnits, Crop, Field, Supplier, Expense, ExpenseClassification, \
     Project, CapitalInvestment, Budget
+from home.models.homestead import Homestead
 
 
 class HomesteadModelTestCase(TestCase):
