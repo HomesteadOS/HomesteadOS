@@ -1,5 +1,7 @@
 import pytest
 from django.core.exceptions import ValidationError
+from django.db import IntegrityError
+
 from home.models.homestead import Homestead
 from home.models.staff import Staff
 from home.models.project import Project
@@ -48,7 +50,7 @@ def project_creation_with_past_due_date():
 
 
 def project_creation_without_staff_responsible():
-    with pytest.raises(models.IntegrityError):
+    with pytest.raises(IntegrityError):
         homestead = Homestead.objects.create(name="Test Homestead")
         Project.objects.create(
             name="Test Project",

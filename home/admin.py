@@ -1,5 +1,15 @@
 from django.contrib import admin
-from .models import *
+from .models.budget import Budget
+from .models.capital_investment import CapitalInvestment
+from .models.crop import Crop
+from .models.event import Event
+from .models.field import Field
+from .models.homestead import Homestead
+from .models.location import Location
+from .models.role import Role
+from .models.role_classes import RoleClasses
+from .models.staff import Staff
+from .models.yield_units import YieldUnits
 
 # Register your models here.
 admin.site.register(Homestead)

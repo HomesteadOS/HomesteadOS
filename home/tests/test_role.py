@@ -1,5 +1,7 @@
 import pytest
 from django.core.exceptions import ValidationError
+from django.db import IntegrityError
+
 from home.models.role import Role
 from home.models.role_classes import RoleClasses
 
@@ -38,7 +40,7 @@ def role_creation_with_invalid_email():
 
 
 def role_creation_without_role_class():
-    with pytest.raises(models.IntegrityError):
+    with pytest.raises(IntegrityError):
         Role.objects.create(
             name="Test Role",
             description="Test Description",
