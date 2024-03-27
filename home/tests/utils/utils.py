@@ -19,7 +19,9 @@ def set_up(self=None):
     self.project = Project.objects.create(name="Test Project", description="Test Description",
                                           start_date=timezone.now(), due_date=timezone.now()
                                           , staff_responsible=self.staff, homestead=self.homestead)
-    self.capital_investment = CapitalInvestment.objects.create(project=self.project, description="Test Description")
+    self.capital_investment = CapitalInvestment.objects.create(project=self.project, description="Test Description",
+                                                               investment_amount=Decimal("10000.00"),
+                                                               investment_date=timezone.now())
     self.budget = Budget.objects.create(
         property_cost=Decimal("100000.00"),
         property_cost_monthly=Decimal("8888.33"),
