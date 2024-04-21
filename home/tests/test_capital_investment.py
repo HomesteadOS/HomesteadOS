@@ -2,7 +2,6 @@ from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.test import TestCase
 from home.models.capital_investment import CapitalInvestment
-from home.models.project import Project
 from home.tests.utils import utils
 
 

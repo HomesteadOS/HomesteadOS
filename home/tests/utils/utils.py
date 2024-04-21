@@ -4,6 +4,7 @@ from django.utils import timezone
 
 from home.models.budget import Budget
 from home.models.capital_investment import CapitalInvestment
+from home.models.crop import Crop
 from home.models.event import Event
 from home.models.event_expense import EventExpense
 from home.models.expense import Expense
@@ -13,6 +14,7 @@ from home.models.location import Location
 from home.models.project import Project
 from home.models.staff import Staff
 from home.models.supplier import Supplier
+from home.models.yield_units import YieldUnits
 
 
 def set_up(self=None):
@@ -64,3 +66,14 @@ def set_up(self=None):
         homestead=self.homestead
     )
     self.event_expense = EventExpense.objects.create(expense=self.expense, event=self.event)
+    self.yield_unit = YieldUnits.objects.create(name="Test Unit")
+    self.crop = Crop.objects.create(
+        name="Test Crop",
+        description="Test Description",
+        plant_date=timezone.now() + timezone.timedelta(days=10),
+        harvest_date=timezone.now() + timezone.timedelta(days=90),
+        harvest_target_date=timezone.now() + timezone.timedelta(days=80),
+        yield_goal=Decimal('1000.00'),
+        yield_unit=self.yield_unit,
+        yield_actual=Decimal('900.00')
+    )
