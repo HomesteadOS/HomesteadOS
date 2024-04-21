@@ -11,3 +11,10 @@ class EventExpense(models.Model):
 
     def __str__(self):
         return self.event.__str__() + ' ' + self.expense.__str__()
+
+    def clean(self, *args, **kwargs):
+        super(EventExpense, self).clean(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super(EventExpense, self).save(*args, **kwargs)

@@ -14,6 +14,8 @@ from home.models.location import Location
 from home.models.project import Project
 from home.models.staff import Staff
 from home.models.supplier import Supplier
+from home.models.task import Task
+from home.models.work_log import WorkLog
 from home.models.yield_units import YieldUnits
 
 
@@ -67,7 +69,7 @@ def set_up(self=None):
         staff_responsible=self.staff
     )
     self.event_expense = EventExpense.objects.create(expense=self.expense, event=self.event)
-    self.yield_unit = YieldUnits.objects.create(name="Test Unit")
+    self.yield_unit = YieldUnits.objects.create(name="Test Unit", abbreviation="TU")
     self.crop = Crop.objects.create(
         name="Test Crop",
         description="Test Description",
@@ -78,3 +80,14 @@ def set_up(self=None):
         yield_unit=self.yield_unit,
         yield_actual=Decimal('900.00')
     )
+    self.task = Task.objects.create(
+        name="Test Task",
+        description="Test Description",
+        start_date=timezone.now(),
+        end_date=timezone.now() + timezone.timedelta(days=1),
+        homestead=self.homestead,
+        staff_responsible=self.staff,
+        completed=False,
+        comment='Test Comment'
+    )
+    self.work_log = WorkLog.objects.create(task=self.task, staff=self.staff, start_time=timezone.now(), end_time=timezone.now() + timezone.timedelta(hours=1), comment='Test Comment')
