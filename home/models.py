@@ -1,8 +1,10 @@
 from home.models.capital_investment import CapitalInvestment
 from home.models.crop import Crop
 from home.models.expense_classification import ExpenseClassification
+from home.models.follow_up import FollowUp
 from home.models.homestead import Homestead
 from home.models.location import Location
+from home.models.notification import Notification
 from home.models.project import Project
 from home.models.role_classes import RoleClasses
 from home.models.staff import Staff
@@ -10,3 +12,16 @@ from home.models.supplier import Supplier
 from home.models.task import Task
 from home.models.task_list import TaskList
 from home.models.yield_units import YieldUnits
+from home.models.event_expense import EventExpense
+from home.models.budget import Budget
+from home.models.field import Field
+from home.models.event import Event
+from home.models.expense import Expense
+from home.models.role import Role
+from home.models.role_classes import RoleClasses
+from home.models.task import Task
+from home.models.task_list import TaskList
+from home.models.task_list_log import TaskListLog
+from home.models.task_list_notification import TaskListNotification
+from home.models.work_log import WorkLog
+

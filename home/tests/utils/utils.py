@@ -4,10 +4,15 @@ from django.utils import timezone
 
 from home.models.budget import Budget
 from home.models.capital_investment import CapitalInvestment
+from home.models.event import Event
+from home.models.event_expense import EventExpense
+from home.models.expense import Expense
+from home.models.expense_classification import ExpenseClassification
 from home.models.homestead import Homestead
 from home.models.location import Location
 from home.models.project import Project
 from home.models.staff import Staff
+from home.models.supplier import Supplier
 
 
 def set_up(self=None):
@@ -31,3 +36,31 @@ def set_up(self=None):
     )
     self.capital_investment.budget = self.budget
     self.capital_investment.save()
+    self.supplier = Supplier.objects.create(name='Test Supplier', description='Test Description', location=self.location)
+    self.expense_classification = ExpenseClassification.objects.create(name='Test Classification', description='Test '
+                                                                                                               'Description')
+    self.expense = Expense.objects.create(
+        amount=Decimal('100.00'),
+        debt=Decimal('50.00'),
+        spender=self.staff,
+        debtor=self.staff,
+        datetime=timezone.now(),
+        description='Test Description',
+        percent=50,
+        classification=self.expense_classification,
+        classification_detail='Test Classification Detail',
+        paid_external=False,
+        paid_internal=False,
+        approved=True,
+        store='Test Store',
+        supplier=self.supplier
+    )
+    self.event = Event.objects.create(
+        start_date=timezone.now().date(),
+        end_date=(timezone.now() + timezone.timedelta(days=1)).date(),
+        start_time=timezone.now().time(),
+        end_time=(timezone.now() + timezone.timedelta(hours=1)).time(),
+        location=self.location,
+        homestead=self.homestead
+    )
+    self.event_expense = EventExpense.objects.create(expense=self.expense, event=self.event)

@@ -3,6 +3,7 @@ from .models.budget import Budget
 from .models.capital_investment import CapitalInvestment
 from .models.crop import Crop
 from .models.event import Event
+from .models.event_expense import EventExpense
 from .models.expense import Expense
 from .models.expense_classification import ExpenseClassification
 from .models.field import Field
@@ -43,3 +44,4 @@ admin.site.register(WorkLog)
 admin.site.register(Notification)
 admin.site.register(Budget)
 admin.site.register(CapitalInvestment)
+admin.site.register(EventExpense)

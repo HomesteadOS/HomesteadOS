@@ -1,4 +1,6 @@
 from django.test import TestCase
+
+import home
 from home.models.event import Event
 from home.models.homestead import Homestead
 from home.models.location import Location
@@ -7,16 +9,7 @@ from django.utils import timezone
 
 class EventModelTest(TestCase):
     def setUp(self):
-        self.location = Location.objects.create(name='Test Location', coordinates='POINT(1 1)')
-        self.homestead = Homestead.objects.create(name='Test Homestead')
-        self.event = Event.objects.create(
-            start_date=timezone.now().date(),
-            end_date=(timezone.now() + timezone.timedelta(days=1)).date(),
-            start_time=timezone.now().time(),
-            end_time=(timezone.now() + timezone.timedelta(hours=1)).time(),
-            location=self.location,
-            homestead=self.homestead
-        )
+        home.tests.utils.set_up(self)
 
     def event_creation_with_different_start_date(self):
         different_start_date_event = Event.objects.create(
