@@ -7,3 +7,10 @@ class ExpenseClassification(models.Model):
 
     def __str__(self):
         return self.name
+
+    def clean(self, *args, **kwargs):
+        super(ExpenseClassification, self).clean(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super(ExpenseClassification, self).save(*args, **kwargs)
