@@ -63,7 +63,8 @@ def set_up(self=None):
         start_time=timezone.now().time(),
         end_time=(timezone.now() + timezone.timedelta(hours=1)).time(),
         location=self.location,
-        homestead=self.homestead
+        homestead=self.homestead,
+        staff_responsible=self.staff
     )
     self.event_expense = EventExpense.objects.create(expense=self.expense, event=self.event)
     self.yield_unit = YieldUnits.objects.create(name="Test Unit")
