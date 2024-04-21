@@ -23,4 +23,4 @@ class Expense(models.Model):
 
     def __str__(self):
         return self.spender.last_name + ', ' + self.spender.first_name + ' spent on ' + self.datetime.__str__() + ' ' \
-            + self.debtor.last_name + ', ' + self.debtor.first_name + ' owes ' + self.debt
+            + self.debtor.last_name + ', ' + self.debtor.first_name + ' owes ' + self.debt.__str__()
